@@ -1,0 +1,36 @@
+# %%
+# IMPORTS
+
+from pathlib import Path
+import os
+from spyrit.misc.load_data import download_girder
+
+# %%
+# %% SETTINGS
+# change this if you want to download the files in a different folder
+project_dir = os.path.dirname(os.path.abspath(__file__))
+destination = os.path.join(project_dir, "data", "tests_downloaded")
+print("Copying folder in:", destination)
+# %%
+# download data from the Pilot warehouse
+url_pilot = "https://pilot-warehouse.creatis.insa-lyon.fr/api/v1"
+data_files = [
+    "61b07f593f7ce79f5e565c5f",  # tomato x2 spectraldata.npz
+    "61b07f583f7ce79f5e565c5c",  # tomato x2 metadata.json
+    "61b0924e3f7ce79f5e565c93",  # tomato x12 spectraldata.npz
+    "61b0924d3f7ce79f5e565c90",  # tomato x12 metadata.json
+    "616fff65478214d8c8a30e45",  # starsector x12 spectraldata.npz
+    "616fff64478214d8c8a30e42",  # starsector x12 metadata.json
+    "6172a77e478214d8c8a30ff7",  # usaf x12 spectraldata.npz
+    "6172a77d478214d8c8a30ff4",  # usaf x12 metadata.json
+
+
+    "61e19b42cdb6910b899d0150",  # SeimensStar spectraldata.npz
+    "61e19b40cdb6910b899d014d",  # SeimensStar metadata.json
+]
+try:
+    download_girder(url_pilot, data_files, destination)
+except Exception as e:
+    print("Unable to download data from the Pilot warehouse")
+    print(e)
+
