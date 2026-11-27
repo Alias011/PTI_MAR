@@ -15,12 +15,12 @@ spectral_data_file = os.path.join(raw_data_dir, "tests_downloaded", "tomato_slic
 meta_data_file = os.path.join(raw_data_dir, "tests_downloaded", "tomato_slice_2_zoomx2_metadata.json")
 bin_number = 4
 K = 1024
+destination_dir = "data_test"
 #######################################
 
 #%%
-
 #recuperer, reordonnancer et unsplitter les mesures
-y_full, ind = get_reordered_unsplit_measures(spectral_data_file, meta_data_file)
+y_full, ind_hadamard = get_reordered_unsplit_measures(spectral_data_file, meta_data_file)
 
 #reconstruire les ground truths avec un pseudoinverse (hadamard) sur y_full 
 x_gt_full, norm = get_reconstructed_gt(y_full, spectral_data_file, meta_data_file)
